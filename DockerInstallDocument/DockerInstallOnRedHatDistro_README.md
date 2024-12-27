@@ -101,4 +101,31 @@ Finally, verify that Docker is correctly installed and working by checking its v
 ```bash
 docker --version
 ```
+
+## Step 11: Fix Docker Socket Permission Issues
+
+If you encounter a permission issue when running Docker commands, follow these steps:
+
+### 1. Add your user to the docker group:
+```bash
+sudo usermod -aG docker <your-username>
+```
+
+### 2. Change the group ownership of the Docker socket:
+```bash
+sudo chown root:docker /var/run/docker.sock
+```
+
+### 3. Restart Docker service:
+```bash
+sudo systemctl restart docker
+```
+
+### 4. Verify that Docker works without sudo:
+```bash
+docker ps -a
+```
+
+
 This document summarizes the process to install Docker, enable it, and troubleshoot common installation issues on CentOS-based systems. If you face further issues, refer to the service status logs or Docker documentation for more advanced troubleshooting steps.
+
